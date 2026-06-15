@@ -20,17 +20,24 @@ export const MoviesTable = () => {
         flexDirection: "column",
       }}
     >
-      <DataGrid
-        rows={movies}
-        columns={columns}
-        getRowHeight={() => "auto"}
-        sx={{
-          "& .MuiDataGrid-cell": {
-            display: "flex",
-            alignItems: "center",
-          },
-        }}
-      />
+    <DataGrid
+  rows={movies}
+  columns={columns}
+  getRowHeight={() => "auto"} 
+  onRowClick={(params) => setSelectedMovie(params.row)}
+  sx={{
+    "& .MuiDataGrid-cell": {
+      display: "flex",
+      alignItems: "center",
+      minHeight: "100px !important",
+      maxHeight: "300px !important",
+    },
+    "& .MuiDataGrid-row": {
+      minHeight: "100px !important",
+      maxHeight: "300px !important",
+    },
+  }}
+/>
     </div>
   );
 };
