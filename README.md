@@ -1,73 +1,45 @@
-# React + TypeScript + Vite
+# CineGrid
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Simple movie explorer built with React, TypeScript, Vite, and Material UI.
+Time Spent
+Total time spent: approximately 4 hours.
+## Live demo
 
-Currently, two official plugins are available:
+- Netlify: https://6a302af6719359e476c2d527--hilarious-duckanoo-686bc8.netlify.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Project overview
 
-## React Compiler
+The app demonstrates a Material UI `DataGrid` with:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- sortable and filterable columns
+- automatic row height between `100px` and `300px`
+- custom styled text columns
+- poster image preview modal
+- row click movie details modal
+- light/dark theme toggle
+- persisted table state and theme using `zustand`
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- `DataGrid` with at least 4 columns: poster image, title, release date, rating
+- image column opens a modal preview on click
+- row click opens a modal with movie details
+- filter and sort support across columns
+- themed UI with saved preference
+- state persistence across page reloads
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Run locally
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open the app at `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Notes
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- The project uses TMDB image base URL from environment configuration.
+- The current UI is built with MUI components and custom styled cells.
+- The repository is ready to deploy to Netlify or GitHub Pages.
