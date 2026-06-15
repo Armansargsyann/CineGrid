@@ -1,34 +1,36 @@
-import type { GridColDef } from '@mui/x-data-grid';
-import { RatingTypography, TitleTypography, PosterImage } from './styled/MovieStyles';
+import { useEffect } from "react";
+import { useMovieStore } from "../store/MovieStore/useMovieStore";
+import { DataGrid } from "@mui/x-data-grid";
+import { columns } from "../constants/columns";
 
-export const columns: GridColDef[] = [
-  { 
-    field: 'poster_path', 
-    headerName: 'Poster', 
-    width: 100,
-    renderCell: (params) => (  //by this we are control oure recourse
-      <PosterImage 
-      src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}${params.value}`}
-        alt="poster" 
+export const MoviesTable = () => {
+  const { movies, fetchMovies, setSelectedMovie } = useMovieStore();
+  useEffect(() => {
+    if (movies.length === 0) {
+      fetchMovies();
+    }
+  }, [fetchMovies, movies.length]);
+
+  return (
+    <div
+      style={{
+        height: "100vh",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <DataGrid
+        rows={movies}
+        columns={columns}
+        getRowHeight={() => "auto"}
+        sx={{
+          "& .MuiDataGrid-cell": {
+            display: "flex",
+            alignItems: "center",
+          },
+        }}
       />
-    )
-  },
-  { 
-    field: 'title', 
-    headerName: 'Title', 
-    flex: 1,
-    renderCell: (params) => <TitleTypography>{params.value}</TitleTypography>
-  },
-  { field: 'release_date', headerName: 'Release Date', width: 150 },
-  { 
-    field: 'vote_average', 
-    headerName: 'Rating', 
-    type: 'number',
-    width: 120,
-    renderCell: (params) => (
-      <RatingTypography rating={params.value as number}>
-        {params.value}
-      </RatingTypography>
-    )
-  }
-];
+    </div>
+  );
+};

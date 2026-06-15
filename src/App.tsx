@@ -1,9 +1,10 @@
+import { MoviesTable } from "./components/MoviesTable";
 
 export default function App(){
 
   return(
     <>
-    <h1>hello</h1>
+    <MoviesTable/>
     </>
   )
 }
