@@ -1,5 +1,5 @@
 import type { GridColDef } from '@mui/x-data-grid';
-import { PosterImage, RatingTypography, TitleTypography } from '../components/styled/MovieStyles';
+import { PosterImage, RatingTypography, TitleTypography } from '@/components/styled/MovieStyles';
 
 export const columns: GridColDef[] = [
   { 

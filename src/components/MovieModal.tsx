@@ -1,6 +1,7 @@
 import { Modal, Box, Typography, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { useMovieStore } from '../store/MovieStore/useMovieStore';
+import { useMovieStore } from '@/store/MovieStore/useMovieStore';
+
 
 
 export const MovieModal = () => {

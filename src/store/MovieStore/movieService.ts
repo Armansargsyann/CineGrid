@@ -1,5 +1,5 @@
-import Axios from "../../app/config-axios";
-import type { IMovie } from "../MovieStore/useMovieStore";
+import Axios from "@/app/config-axios";
+import type { IMovie } from "@/store/MovieStore/useMovieStore";
 
 export const movieService = {
   getPopularMovies: async (): Promise<IMovie[]> => {

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { movieService } from "./movieService";
-
+import { movieService } from "@/store/MovieStore/movieService";
+import { type GridState } from "@mui/x-data-grid"; 
 
 export interface IMovie {
   id: number;
@@ -15,8 +15,10 @@ export interface IMovie {
 interface IMovieStore {
   movies: IMovie[];
   selectedMovie: IMovie | null;
+  gridState: Partial<GridState> | null; 
   setMovies: (movies: IMovie[]) => void;
   setSelectedMovie: (movie: IMovie | null) => void;
+  setGridState: (state: Partial<GridState>) => void; 
   fetchMovies: () => Promise<void>; 
 }
 
@@ -25,8 +27,10 @@ export const useMovieStore = create<IMovieStore>()(
     (set) => ({
       movies: [],
       selectedMovie: null,
+      gridState: null,
       setMovies: (movies) => set({ movies }),
       setSelectedMovie: (movie) => set({ selectedMovie: movie }),
+      setGridState: (gridState) => set({ gridState }),
       
       fetchMovies: async () => {
         try {
