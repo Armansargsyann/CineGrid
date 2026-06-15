@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   DataGrid,
   type GridFilterState,
@@ -7,10 +7,12 @@ import {
 } from "@mui/x-data-grid";
 import { useMovieStore } from "@/store/MovieStore/useMovieStore";
 import { columns } from "@/constants/columns";
+import { ImageModal } from "@/components/ImageModal";
 
 export const MoviesTable = () => {
   const { movies, gridState, setGridState, setSelectedMovie, fetchMovies } =
     useMovieStore();
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
   const currentGridState = gridState ?? {};
 
   useEffect(() => {
@@ -60,6 +62,14 @@ export const MoviesTable = () => {
             } as GridPaginationState,
           });
         }}
+        onCellClick={(params, event) => {
+          if (params.field === "poster_path") {
+            event.stopPropagation();
+            setImageUrl(
+              `${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}${params.value}`,
+            );
+          }
+        }}
         onRowClick={(params) => setSelectedMovie(params.row)}
         sx={{
           "& .MuiDataGrid-cell": {
@@ -72,6 +82,11 @@ export const MoviesTable = () => {
             maxHeight: "300px !important",
           },
         }}
+      />
+      <ImageModal
+        imageUrl={imageUrl}
+        open={!!imageUrl}
+        onClose={() => setImageUrl(null)}
       />
     </div>
   );

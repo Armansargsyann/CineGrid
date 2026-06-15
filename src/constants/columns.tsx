@@ -6,12 +6,14 @@ export const columns: GridColDef[] = [
     field: 'poster_path', 
     headerName: 'Poster', 
     width: 120,
+    sortable: false,
+    filterable: false,
     renderCell: (params) => (
-      <PosterImage 
+      <PosterImage
         src={`${import.meta.env.VITE_TMDB_IMAGE_BASE_URL}${params.value}`}
         alt="poster" 
       />
-    )
+    ),
   },
   { 
     field: 'title', 

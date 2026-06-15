@@ -17,6 +17,19 @@ export const TitleTypography = styled(Typography)({
   },
 });
 
+export const OverviewTypography = styled(Typography)({
+  fontSize: "0.9rem",
+  color: "#424242",
+  fontStyle: "italic",
+  lineHeight: 1.4,
+  maxWidth: "100%",
+});
+
+export const ReleaseTypography = styled(Typography)({
+  color: "#9c27b0",
+  fontWeight: 700,
+});
+
 export const PosterImage = styled("img")({
   width: "80px",
   minHeight: "100px",
